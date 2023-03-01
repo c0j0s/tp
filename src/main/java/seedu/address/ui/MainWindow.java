@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private DebugWindow debugWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -66,6 +67,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        debugWindow = new DebugWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -147,6 +149,18 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the debug window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleDebug() {
+        if (!debugWindow.isShowing()) {
+            debugWindow.show();
+        } else {
+            debugWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -180,6 +194,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowDebug()) {
+                handleDebug();
             }
 
             if (commandResult.isExit()) {
