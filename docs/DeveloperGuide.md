@@ -329,6 +329,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <details>
 <summary><b>[DTM1] Add a delivery task</b></summary>
+<pre>
 <b>MSS</b>
 
 1.  User request to add a delivery task
@@ -341,6 +342,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       * 1a1. DD warns user.  
       * 1a2. User reenters with correct format.  
          Use case resumes at step 2. 
+</pre>
 </details>  
 
 
