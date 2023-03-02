@@ -332,16 +332,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <pre>
 <b>MSS</b>
 
-1.  User request to add a delivery task
-2.  DD add the task into the system
-
+1.  User request to add a delivery task.
+2.  DD add the task into the system.
     Use case ends.
 
 <b>Extensions</b>
-   * 1a. Invalid command format entered.  
-      * 1a1. DD warns user.  
-      * 1a2. User reenters with correct format.  
-         Use case resumes at step 2. 
+   1a. Invalid command format entered.  
+      1a1. DD warns user.  
+      1a2. User reenters with correct format.  
+           Use case resumes at step 2.
 </pre>
 </details>  
 
