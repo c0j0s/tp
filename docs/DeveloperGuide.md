@@ -292,7 +292,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: [AB1] Delete a person**
 
 **MSS**
 
@@ -326,6 +326,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+
+<details>
+<summary><b>[DTM1] Add a delivery task</b></summary>
+<b>MSS</b>
+
+1.  User request to add a delivery task
+2.  DD add the task into the system
+
+    Use case ends.
+
+<b>Extensions</b>
+   * 1a. Invalid command format entered.  
+      * 1a1. DD warns user.  
+      * 1a2. User reenters with correct format.  
+         Use case resumes at step 2. 
+</details>  
+
+
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -344,6 +362,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **GUI**: Graphical User Interface
 * **CLI**: Command Line Interface
+* **DD**: Duke Driver
+* **DTM**: Delivery Task Management 
 
 --------------------------------------------------------------------------------------------------------------------
 
