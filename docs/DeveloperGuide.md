@@ -330,6 +330,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <details>
 <summary><b>[DTM1] Add a delivery task</b></summary>
 <p>
+<!-- have to be followed by an empty line! -->
+
 Actor: user  
 
 **MSS**
@@ -342,6 +344,7 @@ Actor: user
       * 1a1. DD warns user.
       * 1a2. User reenters with correct format.  
          Use case resumes at step 2.
+
 </p>
 </details>  
 
