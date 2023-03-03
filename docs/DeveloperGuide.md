@@ -298,9 +298,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <b>MSS</b>
 
 1.  User is on homepage of list of jobs
-2.  Duke Driver shows button to view overall statistics at the top
-3.  User requests to view statistics
-4.  Duke Driver shows total earnings, monthly earnings, weekly earnings, daily earnings and top customers visited
+2. User requests to view overall statistics
+3. Duke Driver shows total earnings, monthly earnings, weekly earnings, daily earnings and top customers visited
 
     Use case ends.
     
@@ -348,10 +347,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <b>MSS</b>
 
 
-1.  User is on homepage of list of jobs
-2.  Duke Driver shows button to add job at the top
-3.  User requests to add a job in the list
-4.  Duke Driver adds job and job appears in list of jobs
+1. User is on homepage of list of jobs
+2. User requests to add a job in the list
+3. Duke Driver adds job and job appears in list of jobs
 
     Use case ends.
 </pre>
@@ -364,14 +362,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <pre>
 <b>MSS</b>
 
-1. User requests to list jobs/contacts.
-2. Duke Driver shows a list of jobs (UC2)
+1. User goes to homepage with list of jobs/contacts.
+2. Duke Driver displays job list.
 3. User requests to display a specific job to start chat.
-4. Duke Driver displays the chosen job with more specific details.
-5. User selects "Chat" function from the chosen job.
-6. Duke Driver prompts Chat window with specific client.
-7. User starts the chat by typing in the messages and press Enter to send/
-8. Duke Driver shows the message sent in the Chat window.
+4. Duke Driver displays the chosen job in details and Chat option.
+5. User selects "Chat" option from the chosen job and requests to chat.
+6. Duke Driver shows the message sent in the Chat window.
 
    Use case ends.
 
