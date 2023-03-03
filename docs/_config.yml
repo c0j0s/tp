@@ -6,7 +6,7 @@ header_pages:
   - DeveloperGuide.md
   - AboutUs.md
 
-markdown: kramdown
+markdown: CommonMarkGhPages
 
 repository: "AY2223S2-CS2103-F11-2/tp"
 github_icon: "images/github-icon.png"
