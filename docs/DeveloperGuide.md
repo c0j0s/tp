@@ -329,19 +329,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <details>
 <summary><b>[DTM1] Add a delivery task</b></summary>
-<pre>
-<b>MSS</b>
+<p>
+Actor: user  
 
-1.  User request to add a delivery task.
-2.  DD add the task into the system.
-    Use case ends.
+**MSS**
+1. User request to add a delivery task.
+2. DD add the task into the system.
+   Use case ends.  
 
-<b>Extensions</b>
-   1a. Invalid command format entered.  
-      1a1. DD warns user.  
-      1a2. User reenters with correct format.  
-           Use case resumes at step 2.
-</pre>
+**Extensions**
+   * 1a. Invalid command format entered.
+      * 1a1. DD warns user.
+      * 1a2. User reenters with correct format.  
+         Use case resumes at step 2.
+</p>
 </details>  
 
 
