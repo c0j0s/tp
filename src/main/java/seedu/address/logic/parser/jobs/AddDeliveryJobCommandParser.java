@@ -93,11 +93,16 @@ public class AddDeliveryJobCommandParser implements Parser<AddDeliveryJobCommand
             throw new ParseException(DeliverySlot.MESSAGE_CONSTRAINTS);
         }
 
-        DeliveryJob job = createDeliveryJob(rid, sid, date, slot, earn);
-        return new AddDeliveryJobCommand(job);
+        try {
+            DeliveryJob job = createDeliveryJob(rid, sid, date, slot, earn);
+            return new AddDeliveryJobCommand(job);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(e.getMessage());
+        }
     }
 
-    private DeliveryJob createDeliveryJob(String rid, String sid, String date, String slot, String earn) {
+    private DeliveryJob createDeliveryJob(String rid, String sid, String date, String slot, String earn)
+            throws IllegalArgumentException {
         Optional<DeliveryDate> jobDate;
         Optional<DeliverySlot> jobSlot;
         Optional<Earning> jobEarning;

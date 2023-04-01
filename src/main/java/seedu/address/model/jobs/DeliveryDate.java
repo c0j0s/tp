@@ -5,6 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents a job's job date in the address book.
@@ -13,8 +14,8 @@ import java.time.format.DateTimeFormatter;
 public class DeliveryDate {
 
     public static final String MESSAGE_CONSTRAINTS = "Dates should only contain numeric characters and spaces, "
-            + "and it should not be blank.\n"
-            + "Date should have format like this: YYYY-mm-DD";
+            + "and it should not be blank\n"
+            + "with format like this: YYYY-mm-DD";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -22,6 +23,8 @@ public class DeliveryDate {
      */
     public static final String VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2}";
     public static final DateTimeFormatter VALID_FORMAT = DateTimeFormatter.ofPattern("YYYY-MM-dd");
+
+    private static final String placeholder = "0000-00-00";
 
     public final String date;
 
@@ -40,7 +43,15 @@ public class DeliveryDate {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidDate(String test) {
-        return test.matches(VALIDATION_REGEX);
+        try {
+            if (test.equals(placeholder)) {
+                return true;
+            }
+            LocalDate.parse(test);
+            return test.matches(VALIDATION_REGEX);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
     }
 
     /**
@@ -68,7 +79,7 @@ public class DeliveryDate {
     }
 
     public static DeliveryDate placeholder() {
-        return new DeliveryDate("0000-00-00");
+        return new DeliveryDate(placeholder);
     }
 
 }

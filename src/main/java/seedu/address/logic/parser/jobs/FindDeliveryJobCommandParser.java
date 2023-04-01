@@ -35,9 +35,6 @@ import seedu.address.model.jobs.predicate.DeliveryJobContainsStatusPredicate;
  */
 public class FindDeliveryJobCommandParser implements Parser<FindDeliveryJobCommand> {
 
-    private static final String MESSAGE_DATE_FORMAT = "Invalid date format!\nDate/ <blank> | YYYY-MM-DD";
-    private static final String MESSAGE_SLOT_FORMAT = "Invalid slot format!\nSlot/ <blank> | 1..5";
-    private static final String MESSAGE_EARN_FORMAT = "Invalid earning format!\nearn/ d.f ";
     private static final String MESSAGE_EMPTY_SENDER_ID = "Sender id missing!\nsi/ id ";
     private static final String MESSAGE_EMPTY_JOB_ID = "Job id missing!\nji/ id ";
     private static final String MESSAGE_EMPTY_RECIPIENT_ID = "Recipient id missing!\nri/ id ";
@@ -129,7 +126,7 @@ public class FindDeliveryJobCommandParser implements Parser<FindDeliveryJobComma
                 query += "delivery date: " + toFindDate.toString() + "\n";
             } catch (IllegalArgumentException e) {
                 throw new ParseException(
-                    String.format(MESSAGE_DATE_FORMAT, e.getMessage()));
+                    String.format(DeliveryDate.MESSAGE_CONSTRAINTS));
             }
         }
 
@@ -150,7 +147,7 @@ public class FindDeliveryJobCommandParser implements Parser<FindDeliveryJobComma
                 query += "delivery slot: " + toFindSlot.toString() + "\n";
             } catch (IllegalArgumentException e) {
                 throw new ParseException(
-                    String.format(MESSAGE_SLOT_FORMAT, e.getMessage()));
+                    String.format(DeliverySlot.MESSAGE_CONSTRAINTS));
             }
         }
 
@@ -165,7 +162,7 @@ public class FindDeliveryJobCommandParser implements Parser<FindDeliveryJobComma
                 query += "earning: " + val + "\n";
             } catch (IllegalArgumentException e) {
                 throw new ParseException(
-                    String.format(MESSAGE_EARN_FORMAT, e.getMessage()));
+                    String.format(Earning.MESSAGE_CONSTRAINTS));
             }
         }
 

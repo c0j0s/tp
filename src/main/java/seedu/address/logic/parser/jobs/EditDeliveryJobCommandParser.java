@@ -30,7 +30,7 @@ import seedu.address.model.jobs.Earning;
  */
 public class EditDeliveryJobCommandParser implements Parser<EditDeliveryJobCommand> {
 
-    private static final String MESSAGE_DATE_FORMAT = "Invalid date format!\nDate/ <blank> | YYYY-MM-DD";
+    private static final String MESSAGE_DATE_FORMAT = "Invalid date format or range!\nDate/ <blank> | YYYY-MM-DD";
     private static final String MESSAGE_SLOT_FORMAT = "Invalid slot format!\nSlot/ <blank> | 1..5";
     private static final String MESSAGE_EARN_FORMAT = "Invalid earning format!\nearn/ d.f ";
     private static final String MESSAGE_EMPTY_SENDER_ID = "Sender id missing!\nsi/ id ";
