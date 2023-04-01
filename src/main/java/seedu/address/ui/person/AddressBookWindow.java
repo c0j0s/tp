@@ -31,6 +31,7 @@ public class AddressBookWindow extends UiPart<Stage> {
     private final Logger logger = LogsCenter.getLogger(getClass());
     private final Consumer<Person> selectHandler;
     private final HelpWindow helpWindow;
+    private CommandBox commandBox;
     private Stage primaryStage;
     private Logic logic;
 
@@ -58,13 +59,7 @@ public class AddressBookWindow extends UiPart<Stage> {
      * {@code Logic} with a select handler.
      */
     public AddressBookWindow(Stage primaryStage, Logic logic, Consumer<Person> selectHandler) {
-        super(FXML, primaryStage);
-        this.helpWindow = new HelpWindow();
-
-        // Set dependencies
-        this.primaryStage = primaryStage;
-        this.logic = logic;
-        this.selectHandler = selectHandler;
+        this(primaryStage, logic, selectHandler, new HelpWindow());
     }
 
     /**
@@ -81,6 +76,7 @@ public class AddressBookWindow extends UiPart<Stage> {
         this.primaryStage = primaryStage;
         this.logic = logic;
         this.selectHandler = selectHandler;
+        primaryStage.setResizable(false);
     }
 
     /**
@@ -148,8 +144,9 @@ public class AddressBookWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        commandBox.focus();
     }
 
     @FXML
