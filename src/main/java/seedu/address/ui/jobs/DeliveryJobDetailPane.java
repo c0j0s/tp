@@ -32,10 +32,12 @@ public class DeliveryJobDetailPane extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private final DeliveryJob job;
+    private boolean hideSensitive;
 
     private Consumer<DeliveryJob> handleEdit;
     private Consumer<DeliveryJob> handleComplete;
     private Consumer<DeliveryJob> handleDelete;
+    private Consumer<Boolean> handleHide;
 
     @FXML
     private StackPane senderContactInfoPlaceholder;
@@ -71,17 +73,27 @@ public class DeliveryJobDetailPane extends UiPart<Region> {
     private VBox invalidMessageContainer;
 
     /**
-     * DeliveryJobDetailPanel
+     * Constructs a DeliveryJobDetailPanel.
      *
      * @param job
      */
     public DeliveryJobDetailPane(DeliveryJob job) {
-        super(FXML);
-        this.job = job;
+        this(job, false);
     }
 
     /**
-     * fillInnerParts.
+     * Constructs a DeliveryJobDetailPanel with preconfig contact pane visibiity.
+     *
+     * @param job
+     */
+    public DeliveryJobDetailPane(DeliveryJob job, boolean hideSensitive) {
+        super(FXML);
+        this.job = job;
+        this.hideSensitive = hideSensitive;
+    }
+
+    /**
+     * fills Inner Parts.
      *
      * @param ab
      */
@@ -130,6 +142,7 @@ public class DeliveryJobDetailPane extends UiPart<Region> {
         handleComplete = (job) -> {};
         handleDelete = (job) -> {};
         updateCompleteButton();
+        togglehideSensitive();
     }
 
     /**
@@ -159,6 +172,16 @@ public class DeliveryJobDetailPane extends UiPart<Region> {
         handleDelete = handler;
     }
 
+    /**
+     * Sets the hide handler.
+     *
+     * @param handler
+     */
+    public void setHideHandler(Consumer<Boolean> handler) {
+        toggleContactButton.setVisible(true);
+        handleHide = handler;
+    }
+
     @FXML
     void handleEditAction() {
         logger.info("[Event] handleEditAction");
@@ -179,13 +202,20 @@ public class DeliveryJobDetailPane extends UiPart<Region> {
     }
 
     @FXML
-    void toggleVisibility() {
-        contactDetailPane.setVisible(!contactDetailPane.isVisible());
-        if (!contactDetailPane.isVisible()) {
+    void handleHideAction() {
+        logger.info("[Event] handleHideAction");
+        this.hideSensitive = !hideSensitive;
+        togglehideSensitive();
+        handleHide.accept(hideSensitive);
+    }
+
+    private void togglehideSensitive() {
+        if (!hideSensitive) {
             toggleContactButton.setText(BUTTON_LABEL_SHOW);
         } else {
             toggleContactButton.setText(BUTTON_LABEL_HIDE);
         }
+        contactDetailPane.setVisible(!hideSensitive);
     }
 
     private void updateCompleteButton() {

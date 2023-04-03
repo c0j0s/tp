@@ -40,6 +40,9 @@ public class SampleDataUtil {
                     getTagSet("Regular")),
             new Person("ROYSAM", new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                     new Address("Blk 45 Aljunied Street 85, #11-31"),
+                    getTagSet("Business")),
+            new Person(new Name("B"), new Phone("92620000"), new Email("BE@example.com"),
+                    new Address("Blk 45 Aljunied Street 85, #11-30"),
                     getTagSet("Business"))
         };
     }

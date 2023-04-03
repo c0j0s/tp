@@ -68,6 +68,7 @@ public class MainWindow extends UiPart<Stage> {
     private ReminderListWindow reminderListWindow;
     private StatisticsWindow statsWindow;
     private UnscheduleWindow unscheduleWindow;
+    private boolean hideSensitive;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -128,17 +129,22 @@ public class MainWindow extends UiPart<Stage> {
         }
     };
 
+    private Consumer<Boolean> hideDeliveryJobContactHandler = hide -> {
+        this.hideSensitive = hide;
+    };
+
     private BiConsumer<Integer, DeliveryJob> selectDeliveryJobHandler = (idx, job) -> {
         logger.info("[JobListView] select: " + idx);
         deliveryJobDetailPlaceholder.getChildren().clear();
 
         if (idx >= 0) {
-            DeliveryJobDetailPane detailPane = new DeliveryJobDetailPane(job);
+            DeliveryJobDetailPane detailPane = new DeliveryJobDetailPane(job, hideSensitive);
             detailPane.fillInnerParts(logic.getAddressBook());
             deliveryJobDetailPlaceholder.getChildren().add(detailPane.getRoot());
             detailPane.setCompleteHandler(completeDeliveryJobHandler);
             detailPane.setEditHandler(editDeliveryJobHandler);
             detailPane.setDeleteHandler(deleteDeliveryJobHandler);
+            detailPane.setHideHandler(hideDeliveryJobContactHandler);
             return;
         }
 
@@ -207,6 +213,7 @@ public class MainWindow extends UiPart<Stage> {
         reminderListWindow = new ReminderListWindow(new Stage(), logic);
         statsWindow = new StatisticsWindow(new Stage(), logic);
         addressBookWindow = new AddressBookWindow(new Stage(), logic, (person) -> {}, helpWindow);
+        this.hideSensitive = false;
     }
 
     /**

@@ -60,12 +60,11 @@ public class Person {
         this.tags.add(null);
     }
 
-
     private static String genPersonId(Name name, Phone phone) {
         requireAllNonNull(name, phone);
-        String prefix = name.fullName.toUpperCase();
-        if (name.fullName.length() < 3) {
-            prefix = name.fullName + "0".repeat(3 - name.fullName.length());
+        String prefix = name.fullName.trim().toUpperCase();
+        if (prefix.length() < 3) {
+            prefix = prefix + "0".repeat(3 - name.fullName.length());
         }
         prefix = prefix.substring(0, 3);
         return prefix.concat(UUID.randomUUID().toString().substring(0, 3).toUpperCase());
