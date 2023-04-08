@@ -222,7 +222,7 @@ public class DeliveryJob {
      * @return boolean
      */
     public boolean hasInvalidSlot() {
-        return getDeliverySlot().isPresent() && (!getDeliverySlot().get().isValid());
+        return getDeliverySlot().isPresent() && (!getDeliverySlot().get().isValidRange());
     }
 
     /**
@@ -248,7 +248,7 @@ public class DeliveryJob {
      * @return
      */
     public boolean isValidScheduled() {
-        return isScheduled() && deliverySlot.get().isValid();
+        return isScheduled() && deliverySlot.get().isValidRange();
     }
 
     /**
@@ -298,6 +298,22 @@ public class DeliveryJob {
         }
 
         return builder.toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof DeliveryJob)) {
+            return false;
+        }
+
+        DeliveryJob otherJob = (DeliveryJob) other;
+        return otherJob.getRecipientId().equals(getRecipientId())
+                && otherJob.getSenderId().equals(getSenderId())
+                && otherJob.getEarning().equals(getEarning());
     }
 
     /**

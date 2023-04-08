@@ -34,16 +34,27 @@ public class EditDeliveryJobCommand extends DeliveryJobCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the job identified "
             + "by the index number/job id used in the displayed job list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_JOB_ID + "Job Id] "
-            + "[" + PREFIX_SENDER_ID + "Sender Id] "
-            + "[" + PREFIX_RECIPIENT_ID + "Recipient] "
-            + "[" + PREFIX_DELIVERY_DATE + "Date] "
-            + "[" + PREFIX_DELIVERY_SLOT + "Slot] "
-            + "[" + PREFIX_EARNING + "Earn] "
-            + "[" + PREFIX_IS_DELIVERED + "Complete]...\n"
+            + "Parameters: INDEX (must be a positive integer) ["
+            + PREFIX_JOB_ID + "JOB_ID] "
+            + "[" + PREFIX_SENDER_ID + "SENDER_ID] "
+            + "[" + PREFIX_RECIPIENT_ID + "RECIPIENT_ID] "
+            + "[" + PREFIX_DELIVERY_DATE + "DELIVERY_DATE] "
+            + "[" + PREFIX_DELIVERY_SLOT + "DELIVERY_SLOT] "
+            + "[" + PREFIX_EARNING + "EARN] "
+            + "[" + PREFIX_IS_DELIVERED + "COMPLETE_STATUS]\n"
+            + "OR\n"
+            + "Parameters: "
+            + PREFIX_JOB_ID + "JOB_ID "
+            + "[" + PREFIX_SENDER_ID + "SENDER_ID] "
+            + "[" + PREFIX_RECIPIENT_ID + "RECIPIENT_ID] "
+            + "[" + PREFIX_DELIVERY_DATE + "DELIVERY_DATE] "
+            + "[" + PREFIX_DELIVERY_SLOT + "DELIVERY_SLOT] "
+            + "[" + PREFIX_EARNING + "EARN] "
+            + "[" + PREFIX_IS_DELIVERED + "COMPLETE_STATUS]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_SENDER_ID + "ALE874 ";
+            + PREFIX_SENDER_ID + "ALE874 \n"
+            + COMMAND_WORD + " " + PREFIX_JOB_ID + "ALBE29E66F "
+            + PREFIX_IS_DELIVERED + "t";
 
     public static final String MESSAGE_EDIT_JOB_SUCCESS = "Edited Job: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -216,8 +227,8 @@ public class EditDeliveryJobCommand extends DeliveryJobCommand {
         private boolean isDelivered;
         private String description;
 
-        private boolean clearDate = false;
-        private boolean clearSlot = false;
+        private boolean isDateCleared = false;
+        private boolean isSlotCleared = false;
 
         public EditDeliveryJobDescriptor() {
         }
@@ -235,8 +246,8 @@ public class EditDeliveryJobCommand extends DeliveryJobCommand {
             setEarning(toCopy.earning);
             setDelivered(toCopy.isDelivered);
             setDescription(toCopy.description);
-            clearDate = toCopy.clearDate;
-            clearSlot = toCopy.clearSlot;
+            isDateCleared = toCopy.isDateCleared;
+            isSlotCleared = toCopy.isSlotCleared;
         }
 
         /**
@@ -338,14 +349,14 @@ public class EditDeliveryJobCommand extends DeliveryJobCommand {
          * Sets the clear slot state.
          */
         public void clearDeliverySlot() {
-            clearSlot = true;
+            isSlotCleared = true;
         }
 
         /**
          * Sets the clear date state.
          */
         public void clearDeliveryDate() {
-            clearDate = true;
+            isDateCleared = true;
         }
 
         /**
@@ -354,7 +365,7 @@ public class EditDeliveryJobCommand extends DeliveryJobCommand {
          * @param f
          */
         public void ifClearDeliverySlot(Runnable s, Runnable f) {
-            if (clearSlot) {
+            if (isSlotCleared) {
                 s.run();
             } else {
                 f.run();
@@ -367,7 +378,7 @@ public class EditDeliveryJobCommand extends DeliveryJobCommand {
          * @param f
          */
         public void ifClearDeliveryDate(Runnable s, Runnable f) {
-            if (clearDate) {
+            if (isDateCleared) {
                 s.run();
             } else {
                 f.run();

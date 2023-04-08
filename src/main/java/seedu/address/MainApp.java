@@ -41,7 +41,7 @@ import seedu.address.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(1, 3, 2, true);
+    public static final Version VERSION = new Version(1, 4, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -114,7 +114,7 @@ public class MainApp extends Application {
 
             initialDeliveryJobSystemData = deliveryJobSystemOptional
                     .orElseGet(SampleDataUtil::getSampleDeliveryJobSystem);
-        } catch (NullPointerException | DataConversionException e) {
+        } catch (IllegalArgumentException | NullPointerException | DataConversionException e) {
             logger.warning(
                     "[DS] Data file not in the correct format. Will be starting with an empty DeliveryJobSystem");
             initialDeliveryJobSystemData = new DeliveryJobSystem();
